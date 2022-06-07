@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Home(){
-  let getAPIRequest = "/api/getL";
+  let getAPIRequest = "/api/L/get";
 
   // Misc Functions
   function randomNumber (min, max) {
@@ -97,7 +97,7 @@ export default function Home(){
           <Modal.Body>
             Woohoo, thanks for contributing!
 
-          <Form action="/api/postL" method="post">
+          <Form action="/api/L/post" method="post">
             <Form.Group className="mb-3">
               <Form.Label><br></br>Enter your L below, it should fit the format of <b>"You took an L because [your submission]"</b>.</Form.Label>
               <Form.Control as="textarea" rows={3} id='suggestion' name='suggestion' required="true"/>
