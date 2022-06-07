@@ -11,7 +11,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
 export default function Home(){
   // Endpoints
   let getEndpoint = "/api/getL";
@@ -42,7 +41,6 @@ export default function Home(){
       });
     });
   }
-
 
   // Return UI
   return (
@@ -95,18 +93,22 @@ export default function Home(){
         <Modal.Header closeButton>
           <Modal.Title>Submit an L</Modal.Title>
         </Modal.Header>
+        
         <Modal.Body>
           Woohoo, thanks for contributing!
           <Form action="/api/postL" method="post">
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label><br></br>Enter your L below, it should fit the format of <b>"You took an L because [your submission]"</b>.</Form.Label>
-              <Form.Control as="textarea" rows={3} id='suggestion' name='suggestion' />
+              <Form.Control as="textarea" rows={3} id='suggestion' name='suggestion' required="true"/>
             </Form.Group>
+
             <Button variant="primary" type="submit">Submit</Button>
           </Form>
+
         </Modal.Body>
       </Modal>
       <ToastContainer />

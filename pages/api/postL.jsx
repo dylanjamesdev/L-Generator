@@ -7,6 +7,16 @@ export default function postL(req, res) {
     // Get the data from the body
     let newL = req.body.suggestion;
 
+    if (newL === "") {
+      return res
+        .status(500)
+        .json({
+          error: true,
+          code: 400,
+          message: "No suggestion was provided.",
+        });
+    }
+
     // Mimic the data from the JSON file
     let data = fs.readFileSync("Submitted_Ls.json");
     let myObject = JSON.parse(data);
