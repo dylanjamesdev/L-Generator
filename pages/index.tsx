@@ -79,9 +79,10 @@ export default function Home(){
       </main>
 
       <footer style={{ textAlign: "center" }}>
-        <a href="https://github.com/dylanjamesdev">
-          Created by <span style={{ color: "#728cd4" }}> Dylan James</span>
-        </a>
+        <p>
+          Created by <a href="https://github.com/dylanjamesdev"> Dylan James</a></p>
+
+
       </footer>
 
         <Modal show={show}
