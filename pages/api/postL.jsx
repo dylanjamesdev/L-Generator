@@ -7,25 +7,23 @@ export default function postL(req, res) {
     // Get the data from the body
     let newL = req.body.suggestion;
 
-    if (newL === "") {
-      return res
-        .status(500)
-        .json({
-          error: true,
-          code: 400,
-          message: "No suggestion was provided.",
-        });
+    if (!newL || newL === "") {
+      return res.status(500).json({
+        error: true,
+        code: 400,
+        message: "No suggestion was provided.",
+      });
     }
 
     // Mimic the data from the JSON file
     let data = fs.readFileSync("Submitted_Ls.json");
-    let myObject = JSON.parse(data);
+    let daArray = JSON.parse(data);
 
     // Add the new data to the array
-    myObject.push(newL);
+    daArray.push(newL);
 
     // Stringify the array
-    let newData = JSON.stringify(myObject);
+    let newData = JSON.stringify(daArray);
 
     // Write the new data to the file
     fs.writeFile("Submitted_Ls.json", newData, (err) => {
@@ -37,8 +35,6 @@ export default function postL(req, res) {
     return res.redirect("/");
   } else {
     // Handle GET reqs
-    res
-      .status(405)
-      .json({ error: true, code: 405, message: "Method not allowed" });
+    return res.status(405);
   }
 }
