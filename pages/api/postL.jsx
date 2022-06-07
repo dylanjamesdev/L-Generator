@@ -24,7 +24,7 @@ export default function postL(req, res) {
     });
 
     // Redirect
-    return res.redirect("/?submitted=true");
+    return res.redirect("/");
   } else {
     // Handle GET reqs
     res
