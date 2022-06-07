@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Home(){
-  let getAPIRequest = "/api/L/get";
+  let getAPIRoute = "/api/L/get";
 
   // Misc Functions
   function randomNumber (min, max) {
@@ -27,7 +27,7 @@ export default function Home(){
 
   // Event Handlers
   function handleGet() {
-    axios.get(getAPIRequest).then((res) => {
+    axios.get(getAPIRoute).then((res) => {
       toast(`✅ You took an L because ${res.data[randomNumber(0, res.data.length - 1)]}.`, {
         position: "top-center",
         hideProgressBar: false,
