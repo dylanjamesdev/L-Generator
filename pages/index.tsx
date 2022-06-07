@@ -81,8 +81,6 @@ export default function Home(){
       <footer style={{ textAlign: "center" }}>
         <p>
           Created by <a href="https://github.com/dylanjamesdev"> Dylan James</a></p>
-
-
       </footer>
 
         <Modal show={show}
