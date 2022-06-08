@@ -1,6 +1,6 @@
 "use strict";
 
-const array = require("../../../Submitted_Ls.json");
+import array from "../../../data/submitted_ls.json";
 
 export default function getL(req, res) {
   // Return da array
