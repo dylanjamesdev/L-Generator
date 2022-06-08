@@ -3,6 +3,8 @@
 import fs from "fs";
 
 export default function postL(req, res) {
+
+// rate limit the number of requests
   if (req.method === "POST") {
     // Get the data from the body
     let newL = req.body.suggestion;
