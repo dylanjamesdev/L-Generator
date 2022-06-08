@@ -19,9 +19,18 @@ export default function postL(req, res) {
     let data = fs.readFileSync("Submitted_Ls.json");
     let daArray = JSON.parse(data);
 
+    //Check if that L has already been submitted
+    if(daArray.includes(newL)) {
+        return res.status(400).json({
+          error: true,
+          code: 400,
+          message: "ya no that has already been submitted 4head"
+        })
+    }
+    
     // Add the new data to the array
     daArray.push(newL);
-
+    
     // Stringify the array
     let newData = JSON.stringify(daArray);
 
