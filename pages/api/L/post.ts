@@ -1,5 +1,6 @@
 "use strict";
 
+import { words } from '../../../constants/banned_words.json';  
 import fs from "fs";
 
 export default function postL(req, res) {
@@ -28,6 +29,14 @@ export default function postL(req, res) {
         })
     }
     
+    if(words.some(v => newL.includes(v))) {
+      return res.status(400).json({
+        error: true,
+        code: 400,
+        message: "yo, thats fucked up you just used a blacklisted word. thats mean.."
+      })
+    }
+
     // Add the new data to the array
     daArray.push(newL);
     
