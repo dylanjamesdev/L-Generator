@@ -15,7 +15,7 @@ export default function API_Handler(req, res) {
     return res.status(400).json({
       error: true,
       code: 400,
-      message: "L bozo, no API query method was provided.",
+      message: "L bozo, no API query or method was provided.",
     });
   }
 
@@ -27,7 +27,7 @@ export default function API_Handler(req, res) {
       return res.status(405).json({
         error: true,
         code: 405,
-        message: "An incorrect query method was used, stop being stupid bozo.",
+        message: "An incorrect query or method was used, stop being stupid bozo.",
       });
     }
   }
@@ -90,7 +90,7 @@ export default function API_Handler(req, res) {
       return res.status(405).json({
         error: true,
         code: 405,
-        message: "An incorrect query method was used, stop being stupid bozo.",
+        message: "An incorrect query or method was used, stop being stupid bozo.",
       });
     }
   }
