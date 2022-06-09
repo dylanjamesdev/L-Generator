@@ -42,7 +42,7 @@ export default function API_Handler(req, res) {
       if (!newL || newL === "") {
         return res.status(500).json({
           error: true,
-          code: 400,
+          code: 500,
           message: "Don't submit blank L's, you bozo.",
         });
       }
