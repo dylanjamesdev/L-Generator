@@ -9,7 +9,6 @@ import { submitted_Ls, banned_words } from "../../../data/constants.json";
  * @api {get} - /api/v2?method=GET - Get the list of ALL submitted L's
  * @api {post} - /api/v2?method=POST - Submit a new L
  */
-
 export default function API_Handler(req, res) {
   // If no method query in url request, return 400.
   if (!req.query.method) {
@@ -70,7 +69,7 @@ export default function API_Handler(req, res) {
       let constantsFile = fs.readFileSync("./data/constants.json");
 
       // Parse into JSON
-      let daArray = JSON.parse(constantsFile);
+      let daArray = JSON.parse(constantsFile.toString());
 
       // Add new L to parsed JSON
       daArray.submitted_Ls.push(newL);

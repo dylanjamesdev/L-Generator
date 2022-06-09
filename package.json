@@ -4,13 +4,12 @@
   "author": "Dylan James <github/dylanjamesdev>",
   "private": false,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build --port=80",
+    "dev": "next dev --port=80",
+    "build": "next build",
     "start": "next start --port=80",
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "next": "12.1.6",
     "react": "18.1.0",

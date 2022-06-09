@@ -2,7 +2,6 @@
 
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
-import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -11,30 +10,28 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Home(req, res) {
-  let getAPIRoute = "/api/v2?method=GET";
+export default function Home(api) {
+  // State for Suggestions Modal
+  const [show, setShow] = useState(false);
+  const modalClose = () => setShow(false);
+  const modalShow = () => setShow(true);
 
   // Misc Functions
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  // State for Suggestions Modal
-  const [show, setShow] = useState(false);
-  const modalClose = () => setShow(false);
-  const modalShow = () => setShow(true);
-
-  // Event Handlers
-  function handleGet() {
-    axios.get(getAPIRoute).then((res) => {
-      toast(
-        `✅ You took an L because ${
-          res.data[randomNumber(0, res.data.length - 1)]
+  // Popup Handler
+  async function handlePopup() {
+    let res = await fetch(`http://localhost/api/v2?method=GET`);
+    let api = await res.json();
+    console.log(`[API REQUEST]`, api)
+    toast(
+        `🥺 You took an L because ${
+          api[randomNumber(0, api.length - 1)]
         }.`,
         {
           position: "top-center",
-          hideProgressBar: false,
-          progress: undefined,
           style: {
             background: "black",
             borderColor: "#728cd4",
@@ -42,7 +39,6 @@ export default function Home(req, res) {
           },
         }
       );
-    });
   }
 
   // Return UI
@@ -65,7 +61,7 @@ export default function Home(req, res) {
           <button
             className={styles.card}
             style={{ borderColor: "#728cd4", color: "white" }}
-            onClick={handleGet}
+            onClick={handlePopup}
           >
             Click Me!
           </button>
@@ -111,7 +107,7 @@ export default function Home(req, res) {
                 rows={3}
                 id="suggestion"
                 name="suggestion"
-                required="true"
+                required
               />
             </Form.Group>
             <Button variant="primary" type="submit">
@@ -122,5 +118,6 @@ export default function Home(req, res) {
       </Modal>
       <ToastContainer />
     </div>
-  );
+  );  
 }
+
