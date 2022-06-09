@@ -23,7 +23,7 @@ export default function Home(api) {
 
   // Popup Handler
   async function handlePopup() {
-    let res = await fetch(`http://localhost/api/v2?method=GET`);
+    let res = await fetch(`/api/v2?method=GET`);
     let api = await res.json();
     console.log(`[API REQUEST]`, api)
     toast(
