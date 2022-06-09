@@ -2,8 +2,8 @@
 
 import "../styles/globals.css";
 
-function LGenApp({ Component, pageProps }) {
+function L({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 
-export default LGenApp;
+export default L;

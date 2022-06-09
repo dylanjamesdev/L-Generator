@@ -1,8 +1,7 @@
 "use strict";
 
 import fs from "fs";
-import { words } from "../../../data/banned_words.json";
-import array from "../../../data/submitted_ls.json";
+import { submitted_Ls, banned_words } from "../../../data/constants.json";
 
 /**
  * API Handler Info
@@ -24,12 +23,12 @@ export default function API_Handler(req, res) {
   // Handle GET requests
   if (req.method === "GET") {
     if (req.query.method === "GET") {
-      return res.status(200).json(array);
+      return res.status(200).json(submitted_Ls);
     } else {
       return res.status(405).json({
         error: true,
         code: 405,
-        message: "Stoopid, you can't POST to this endpoint.",
+        message: "An incorrect query method was used, stop being stupid bozo.",
       });
     }
   }
@@ -39,18 +38,17 @@ export default function API_Handler(req, res) {
     if (req.query.method === "POST") {
       let newL = req.body.suggestion;
 
+      // Prevent empty post request on backend
       if (!newL || newL === "") {
         return res.status(500).json({
           error: true,
           code: 400,
-          message: "No suggestion was provided.",
+          message: "Don't submit blank L's, you bozo.",
         });
       }
 
-      let data = fs.readFileSync("./data/submitted_ls.json");
-      let daArray = JSON.parse(data);
-
-      if (daArray.includes(newL)) {
+      // Prevent previously submitted L's
+      if (submitted_Ls.includes(newL)) {
         return res.status(400).json({
           error: true,
           code: 400,
@@ -58,7 +56,8 @@ export default function API_Handler(req, res) {
         });
       }
 
-      if (words.some((v) => newL.includes(v))) {
+      // Prevent banned words
+      if (banned_words.some((v) => newL.includes(v))) {
         return res.status(400).json({
           error: true,
           code: 400,
@@ -67,21 +66,32 @@ export default function API_Handler(req, res) {
         });
       }
 
-      daArray.push(newL);
+      //  Pull constants file
+      let constantsFile = fs.readFileSync("./data/constants.json");
 
-      let newData = JSON.stringify(daArray);
+      // Parse into JSON
+      let daArray = JSON.parse(constantsFile);
 
-      fs.writeFile("./data/submitted_ls.json", newData, (err) => {
+      // Add new L to parsed JSON
+      daArray.submitted_Ls.push(newL);
+
+      // Stringify new json file
+      let newFile = JSON.stringify(daArray);
+
+      // Write new json file
+      fs.writeFile("./data/constants.json", newFile, (err) => {
         if (err) throw err;
         console.log(`New submission: ${newL}`);
       });
 
+      // Return success
       return res.redirect("/");
     } else {
+      // Return 405 for GET request to POST endpoint
       return res.status(405).json({
         error: true,
         code: 405,
-        message: "Dummy, you can't GET this endpoint.",
+        message: "An incorrect query method was used, stop being stupid bozo.",
       });
     }
   }

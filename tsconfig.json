@@ -21,7 +21,7 @@
     "**/*.tsx",
     "pages/api/L_Bozo.js",
     "pages/_app.tsx",
-    "pages/index.tsx"
-  ],
+    "pages/app/index.tsx"
+, "next.config.js"  ],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 "use strict";
 
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";

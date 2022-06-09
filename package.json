@@ -1,10 +1,11 @@
 {
-  "name": "lgen",
+  "name": "l-generator",
   "version": "0.1.0",
-  "private": true,
+  "author": "Dylan James <github/dylanjamesdev>",
+  "private": false,
   "scripts": {
-    "dev": "next dev --port=80",
-    "build": "next build ",
+    "dev": "next dev",
+    "build": "next build --port=80",
     "start": "next start --port=80",
     "lint": "next lint"
   },
@@ -23,6 +24,7 @@
     "@types/react": "^18.0.12",
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
-    "prettier": "2.6.2"
+    "prettier": "2.6.2",
+    "typescript": "^4.7.3"
   }
 }
