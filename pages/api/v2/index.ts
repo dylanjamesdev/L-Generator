@@ -12,9 +12,9 @@ import { submitted_Ls, banned_words } from "../../../data/constants.json";
 export default function API_Handler(req, res) {
   // If no method query in url request, return 400.
   if (!req.query.method) {
-    return res.status(400).json({
+    return res.status(405).json({
       error: true,
-      code: 400,
+      code: 405,
       message: "L bozo, no API query or method was provided.",
     });
   }
