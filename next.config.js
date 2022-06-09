@@ -10,12 +10,12 @@ const nextConfig = {
       },
       {
         source: "/api/L/get",
-        destination: "/api/v2?method=get",
+        destination: "/api/v2?method=GET",
         permanent: true,
       },
       {
         source: "/api/L/post",
-        destination: "/api/v2?method=post",
+        destination: "/api/v2?method=POST",
         permanent: true,
       },
     ];
